@@ -176,3 +176,8 @@ def get_event_count_since(since_ts: int) -> int:
 def get_total_event_count() -> int:
     row = _conn.execute("SELECT COUNT(*) FROM events").fetchone()
     return row[0] if row else 0
+
+
+def get_db():
+    """Return the shared DB connection (for direct queries in web/app.py)."""
+    return _conn
