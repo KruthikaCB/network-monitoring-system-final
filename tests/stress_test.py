@@ -45,7 +45,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "server"))
 import config
 
 # ── Config ────────────────────────────────────────────────────────────────────
-SERVER_IP  = "127.0.0.1"
+SERVER_IP = "192.168.137.1"
 CIPHER     = Fernet(config.FERNET_KEY)
 ACK_TIMEOUT = config.ACK_TIMEOUT
 

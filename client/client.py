@@ -111,7 +111,7 @@ def send_event(event, metric, value):
             retries += 1
             print(f"[RETRY] seq={seq}  attempt={attempt}/{config.MAX_RETRIES}")
 
-        _udp.sendto(encrypted, ("127.0.0.1", config.UDP_PORT))
+        _udp.sendto(encrypted, ("192.168.137.1", config.UDP_PORT))
 
         try:
             ack_data, _ = _udp.recvfrom(256)
@@ -152,7 +152,7 @@ def _build_tls_ctx():
 def _tls_send(msg):
     try:
         ctx = _build_tls_ctx()
-        raw = socket.create_connection(("127.0.0.1", config.TCP_PORT), timeout=5)
+        raw = socket.create_connection(("192.168.137.1", config.TCP_PORT), timeout=5)
         with ctx.wrap_socket(raw, server_hostname="localhost") as tls:
             tls.sendall(msg.encode())
             return tls.recv(256).decode().strip()
